@@ -3,7 +3,7 @@
 #
 FROM abiosoft/caddy:builder as builder
 
-ARG version="0.10.10"
+ARG version="0.10.11"
 ARG plugins="git"
 
 RUN VERSION=${version} PLUGINS=${plugins} GOARCH=arm GOARM=7 /bin/sh /usr/bin/builder.sh
@@ -18,7 +18,7 @@ MAINTAINER orbsmiv@hotmail.com
 
 RUN [ "cross-build-start" ]
 
-LABEL caddy_version="0.10.10"
+LABEL caddy_version="0.10.11"
 
 RUN apk add --no-cache openssh-client git
 
