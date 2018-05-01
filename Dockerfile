@@ -3,7 +3,7 @@
 #
 FROM abiosoft/caddy:builder as builder
 
-ARG version="0.10.11"
+ARG version="0.10.14"
 ARG plugins="git"
 
 RUN VERSION=${version} PLUGINS=${plugins} GOARCH=arm GOARM=7 /bin/sh /usr/bin/builder.sh
