@@ -18,7 +18,7 @@ MAINTAINER orbsmiv@hotmail.com
 
 RUN [ "cross-build-start" ]
 
-LABEL caddy_version="0.10.11"
+LABEL caddy_version="0.10.14"
 
 RUN apk add --no-cache openssh-client git
 
