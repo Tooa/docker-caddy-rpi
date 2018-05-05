@@ -37,6 +37,6 @@ COPY Caddyfile /etc/Caddyfile
 COPY index.html /srv/index.html
 
 ENTRYPOINT ["/usr/bin/caddy"]
-CMD ["--conf", "/etc/Caddyfile", "--log", "stdout"]
+CMD ["--agree", "--conf", "/etc/Caddyfile", "--log", "stdout"]
 
 RUN [ "cross-build-end" ]
