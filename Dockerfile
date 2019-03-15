@@ -3,7 +3,7 @@
 #
 FROM abiosoft/caddy:builder as builder
 
-ARG version="0.11.4"
+ARG version="0.11.5"
 ARG plugins="git,filebrowser,cors,realip,expires,cache"
 
 ARG GOARCH="arm"
@@ -24,7 +24,7 @@ MAINTAINER orbsmiv@hotmail.com
 
 RUN [ "cross-build-start" ]
 
-ARG version="0.11.4"
+ARG version="0.11.5"
 LABEL caddy_version="$version"
 
 # Let's Encrypt Agreement
