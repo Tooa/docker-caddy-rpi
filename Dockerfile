@@ -3,7 +3,7 @@
 #
 FROM abiosoft/caddy:builder as builder
 
-ARG version="0.11.5"
+ARG version="1.0.0"
 ARG plugins="git,filebrowser,cors,realip,expires,cache"
 
 ARG GOARCH="arm"
@@ -19,12 +19,12 @@ RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/builder.sh
 #
 
 # FROM alpine:3.6
-FROM balenalib/armv7hf-alpine:3.8 
+FROM balenalib/armv7hf-alpine:3.9-run 
 MAINTAINER orbsmiv@hotmail.com
 
 RUN [ "cross-build-start" ]
 
-ARG version="0.11.5"
+ARG version="1.0.0"
 LABEL caddy_version="$version"
 
 # Let's Encrypt Agreement
