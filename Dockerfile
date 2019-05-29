@@ -4,7 +4,7 @@
 FROM abiosoft/caddy:builder as builder
 
 ARG version="1.0.0"
-ARG plugins="git,filebrowser,cors,realip,expires,cache"
+ARG plugins="git,cors,realip,expires,cache"
 
 ARG GOARCH="arm"
 ARG GOARM="7"
