@@ -3,8 +3,9 @@
 #
 FROM abiosoft/caddy:builder as builder
 
-ARG version="1.0.0"
-ARG plugins="git,cors,realip,expires,cache"
+ARG version="1.0.3"
+ARG plugins="git,cors,realip,expires,cache,cloudflare,duckdns"
+ARG enable_telemetry="true"
 
 ARG GOARCH="arm"
 ARG GOARM="7"
@@ -12,25 +13,33 @@ ARG GOARM="7"
 # process wrapper
 RUN go get -v github.com/abiosoft/parent
 
-RUN VERSION=${version} PLUGINS=${plugins} /bin/sh /usr/bin/builder.sh
+RUN VERSION=${version} PLUGINS=${plugins} ENABLE_TELEMETRY=${enable_telemetry} /bin/sh /usr/bin/builder.sh
 
 #
 # Final stage
 #
 
-# FROM alpine:3.6
-FROM balenalib/armv7hf-alpine:3.9-run 
+# FROM alpine:3.10
+FROM balenalib/armv7hf-alpine:3.10-run 
 MAINTAINER orbsmiv@hotmail.com
 
 RUN [ "cross-build-start" ]
 
-ARG version="1.0.0"
+ARG version="1.0.3"
 LABEL caddy_version="$version"
 
 # Let's Encrypt Agreement
 ENV ACME_AGREE="false"
 
-RUN apk add --no-cache openssh-client git
+# Telemetry Stats
+ENV ENABLE_TELEMETRY="$enable_telemetry"
+
+RUN apk add --no-cache \
+    ca-certificates \
+    git \
+    mailcap \
+    openssh-client \
+    tzdata
 
 # install caddy
 COPY --from=builder /install/caddy /usr/bin/caddy
